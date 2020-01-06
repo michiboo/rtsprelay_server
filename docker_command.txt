@@ -1,0 +1,4 @@
+docker build -t geekflare_mongodb .
+docker run --name mongo_container -i -t geekflare_mongodb
+docker rmi $(docker images |grep 'imagename')
+docker rm [name]
