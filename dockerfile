@@ -7,7 +7,11 @@ RUN apt-get install libgstreamer1.0-0 gstreamer1.0-plugins-base gstreamer1.0-plu
 RUN apt-get install gstreamer1.0-plugins-good gstreamer1.0-plugins-bad gstreamer1.0-plugins-ugly -y
 RUN apt-get install gstreamer1.0-libav -y
 RUN apt-get install iputils-ping -y
-RUN mkdir server
-WORKDIR ${PWD}/server
 ADD . .
+RUN ./f/faac-1.29.9.2/configure --prefix=/usr --disable-static
+RUN cd ./f
 RUN make
+RUN cd .. 
+WORKDIR ./server
+RUN make
+

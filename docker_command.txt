@@ -1,4 +1,19 @@
-docker build -t geekflare_mongodb .
-docker run --name mongo_container -i -t geekflare_mongodb
+docker build -t rtspserver .
+docker run --name hi -i -t rtspserver
 docker rmi $(docker images |grep 'imagename')
 docker rm [name]
+systemctl start docker
+hostname -i
+
+docker run  -i   --name hi -p 1234:1234 -t rtspserver
+
+--network host
+
+docker run  -i   --name hi --network host -t rtspserver
+
+gst-launch-1.0  audiotestsrc ! audioconvert ! queue !   r. videotestsrc is-live=1 ! queue !   x264enc tune=zerolatency byte-stream=true threads=1 key-int-max=15 intra-refresh=true !   video/x-h264,width=640,height=480,framerate=10/1 !   rtspclientsink debug=1 latency=0 location=rtsp://10.210.9.77:1234/test/record name=r
+
+filesrc location=
+
+ gst-launch-1.0   videotestsrc is-live=1 ! queue !   x264enc tune=zerolatency byte-stream=true threads=1 key-int-max=15 intra-refresh=true !   video/x-h264,width=640,height=480,framerate=10/1 !   rtspclientsink debug=1 latency=0 location=rtsp://10.210.9.77:1234/test/record name=r
+
