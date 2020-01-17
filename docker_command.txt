@@ -17,3 +17,17 @@ filesrc location=
 
  gst-launch-1.0   videotestsrc is-live=1 ! queue !   x264enc tune=zerolatency byte-stream=true threads=1 key-int-max=15 intra-refresh=true !   video/x-h264,width=640,height=480,framerate=10/1 !   rtspclientsink debug=1 latency=0 location=rtsp://10.210.9.77:1234/test/record name=r
 
+
+
+`hostname -I | awk '{print $1}'`
+ ./build/rtsprelay -p 1234 -i `hostname -I | awk '{print $1}'`
+
+
+ docker network connect host alpine1
+
+ docker start name 
+
+
+ docker container inspect alpine1
+
+ -d detach -i cmd

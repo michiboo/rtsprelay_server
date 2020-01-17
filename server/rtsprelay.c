@@ -16,9 +16,11 @@
                  "  h264parse ! rtph264pay pt=96 config-interval=5 name=pay0 )"
 
 static char *port = (char *) DEFAULT_RTSP_PORT;
+static char *ip = "0.0.0.0";
 
 static GOptionEntry entries[] = {
 	{"port", 'p', 0, G_OPTION_ARG_STRING, &port, "Listen port", "PORT"},
+	{"ip", 'i', 0, G_OPTION_ARG_STRING, &ip, "ip address", "IP"},
 	{NULL}
 };
 
@@ -277,7 +279,7 @@ int main(int argc, char **argv)
 	g_unix_signal_add(SIGINT, exit_handler, loop);
 	g_unix_signal_add(SIGTERM, exit_handler, loop);
 
-	printf("listening at rtsp://0.0.0.0:%s\n", port);
+	printf("listening at rtsp://%s:%s\n", ip, port);
 	g_main_loop_run(loop);
 	printf("exiting...\n");
 
